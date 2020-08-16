@@ -12,7 +12,6 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share/share.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wallpaperplugin/wallpaperplugin.dart';
 
 class ImageView extends StatefulWidget {

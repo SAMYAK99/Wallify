@@ -35,7 +35,6 @@ dependencies:
   random_string: ^2.0.1
   google_fonts: ^1.1.0
   dio: ^3.0.9
-  url_launcher: ^5.4.2
   wallpaperplugin: ^0.1.1
   path_provider: ^1.6.11
   share: ^0.6.4+3

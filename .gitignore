@@ -39,3 +39,5 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+C:\Users\StreamerX\FlutterProjects\wallpaper_app\lib\data\data.dart

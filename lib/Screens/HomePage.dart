@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wallpaperapp/Widgets/widgets.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/CategoryModel.dart';
@@ -61,14 +60,6 @@ class _HomeState extends State<Home> {
         getTrendingWallpaper();
       }
     });
-  }
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override

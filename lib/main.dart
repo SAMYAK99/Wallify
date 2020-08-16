@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Screens/HomePage.dart';
 
 void main() {
@@ -15,6 +14,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.white,
         ),
+        debugShowCheckedModeBanner: false,
         home: Home());
   }
 }
