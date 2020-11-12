@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:wallpaperapp/Widgets/carosel_dashboard.dart';
 import 'package:wallpaperapp/Widgets/widgets.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/CategoryModel.dart';
@@ -65,45 +67,33 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: MainTitle(),
-        elevation: 0.0,
-      ),
+      // appBar: AppBar(
+      //   title: MainTitle(),
+      //   elevation: 0.0,
+      // ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
-              Container(
-                height: 80,
-                child: ListView.builder(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    itemCount: categories.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      /// Create List Item tile
-                      return CategoriesTile(
-                        imgUrls: categories[index].imgUrl,
-                        categorie: categories[index].categorieName,
-                      );
-                    }),
+              SizedBox(
+                height: 50,
               ),
               Container(
+                height: 50,
                 decoration: BoxDecoration(
                   color: Color(0xfff5f8fd),
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(24),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 24),
-                padding: EdgeInsets.symmetric(horizontal: 24),
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   children: <Widget>[
                     Expanded(
                         child: TextField(
                       controller: searchController,
                       decoration: InputDecoration(
-                          hintText: "search wallpapers",
-                          border: InputBorder.none),
+                          hintText: "search", border: InputBorder.none),
                     )),
                     InkWell(
                         onTap: () {
@@ -120,8 +110,24 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
+              // Container(
+              //   height: 60,
+              //   child: ListView.builder(
+              //       padding: EdgeInsets.symmetric(horizontal: 24),
+              //       itemCount: categories.length,
+              //       shrinkWrap: true,
+              //       scrollDirection: Axis.horizontal,
+              //       itemBuilder: (context, index) {
+              //         /// Create List Item tile
+              //         return CategoriesTile(
+              //           imgUrls: categories[index].imgUrl,
+              //           categorie: categories[index].categorieName,
+              //         );
+              //       }),
+              // ),
               SizedBox(
-                height: 15,
+                height: 220,
+                child: Dashboard(),
               ),
               wallPaper(photos, context),
               SizedBox(

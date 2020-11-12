@@ -5,10 +5,10 @@ import 'package:wallpaperapp/models/PhotosModel.dart';
 
 Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 16),
+    padding: EdgeInsets.symmetric(horizontal: 12),
     child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 0.6,
+        crossAxisCount: 3,
+        childAspectRatio: 0.5,
         physics: ClampingScrollPhysics(),
         shrinkWrap: true,
         padding: const EdgeInsets.all(4.0),
@@ -29,7 +29,7 @@ Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
               tag: photoModel.src.portrait,
               child: Container(
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(12),
                     child: CachedNetworkImage(
                         imageUrl: photoModel.src.portrait,
                         placeholder: (context, url) => Container(
@@ -41,6 +41,13 @@ Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
           ));
         }).toList()),
   );
+}
+
+class HomePageGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
 
 Widget MainTitle() {

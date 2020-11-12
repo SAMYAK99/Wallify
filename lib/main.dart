@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:wallpaperapp/Screens/Categories.dart';
+import 'package:wallpaperapp/Widgets/DashBoard.dart';
 import 'Screens/HomePage.dart';
 
 void main() {
@@ -15,6 +18,8 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        home: Home());
+        home: DashBoardGrid(
+          search: 'trending',
+        ));
   }
 }
