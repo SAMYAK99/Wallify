@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:wallpaperapp/Widgets/widgets.dart';
+import 'package:wallpaperapp/Widgets/grid.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/PhotosModel.dart';
 

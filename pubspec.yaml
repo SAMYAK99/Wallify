@@ -32,12 +32,18 @@ dependencies:
   cached_network_image: ^2.0.0
   image_gallery_saver: ^1.2.2
   permission_handler: ^4.2.0+hotfix.3
+  esys_flutter_share:
+  bubble_bottom_bar: ^1.2.0
   random_string: ^2.0.1
   google_fonts: ^1.1.0
   dio: ^3.0.9
-  wallpaperplugin: ^0.1.1
-  path_provider: ^1.6.11
-  share: ^0.6.4+3
+  dynamic_theme: ^1.0.1
+  flutter_switch: ^0.0.2
+  flutter_staggered_grid_view: ^0.3.2
+  carousel_slider: ^1.4.1
+  font_awesome_flutter: ^8.10.0
+  wallpaper_manager: ^1.0.10
+  flutter_cache_manager: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -55,9 +61,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/dashboard/
+    - assets/homepage/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

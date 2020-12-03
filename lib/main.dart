@@ -1,25 +1,46 @@
-import 'package:flutter/foundation.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:wallpaperapp/Screens/Categories.dart';
-import 'package:wallpaperapp/Widgets/DashBoard.dart';
-import 'Screens/HomePage.dart';
+import 'package:flutter/services.dart';
+
+import 'package:wallpaperapp/Widgets/bottomNav.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void changeBrightness() {
+    DynamicTheme.of(context).setBrightness(
+        Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: Colors.white,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: DashBoardGrid(
-          search: 'trending',
-        ));
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => new ThemeData(
+              primaryColor: Colors.white,
+              primarySwatch: Colors.deepPurple,
+              appBarTheme: AppBarTheme(
+                color: Colors.white,
+              ),
+              brightness: brightness,
+            ),
+        themedWidgetBuilder: (context, theme) {
+          return new MaterialApp(
+              theme: theme, debugShowCheckedModeBanner: false, home: NavBar());
+        });
   }
 }

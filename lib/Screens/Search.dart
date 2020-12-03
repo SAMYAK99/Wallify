@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:wallpaperapp/Widgets/widgets.dart';
+import 'package:wallpaperapp/Widgets/grid.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/PhotosModel.dart';
 
@@ -48,25 +48,12 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: MainTitle(),
-        elevation: 0.0,
-        actions: <Widget>[
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(
-                Icons.add,
-                color: Colors.white,
-              ))
-        ],
-      ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 16,
+                height: 48,
               ),
               Container(
                 decoration: BoxDecoration(

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:wallpaperapp/Widgets/grid.dart';
 
-import 'CategoryScreen.dart';
-
-class HomeScreen extends StatefulWidget {
+class CategoryScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _CategoryScreenState createState() => _CategoryScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _CategoryScreenState extends State<CategoryScreen> {
   final List<Map<String, String>> popular = [
     {'img': 'assets/dashboard/sports.jpg', "name": 'Sports', "key": 'sports'},
     {
@@ -34,12 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
     {'img': 'assets/dashboard/neon.jpg', "name": 'Neon', "key": 'neon'},
     {'img': 'assets/dashboard/planes.jpg', "name": 'Planes', "key": 'planes'},
     {'img': 'assets/dashboard/rain.jpg', "name": 'Rain', "key": 'rain'},
+    {'img': 'assets/dashboard/code.jpg', "name": 'Coding', "key": 'coding'},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: ListView(
         children: [
           Padding(
@@ -47,6 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Wallpapers',
+                  style: GoogleFonts.openSans(
+                      fontWeight: FontWeight.w700, fontSize: 24),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
                 StaggeredGridView.countBuilder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
@@ -86,8 +98,9 @@ class StagCategory extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => CategoryScreen(
+                builder: (context) => GridPage(
                       search: value,
+                      heading: name,
                     )));
       },
       child: Container(

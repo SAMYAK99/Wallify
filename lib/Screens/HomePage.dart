@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:wallpaperapp/Widgets/StaggeredGrid.dart';
 import 'package:wallpaperapp/Widgets/carosel_dashboard.dart';
-import 'package:wallpaperapp/Widgets/widgets.dart';
+import 'package:wallpaperapp/Widgets/grid.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/CategoryModel.dart';
 import 'package:wallpaperapp/models/PhotosModel.dart';
@@ -39,8 +39,6 @@ class _HomeState extends State<Home> {
         photos.add(photosModel);
         //print(photosModel.toString()+ "  "+ photosModel.src.portrait);
       });
-
-      setState(() {});
     });
   }
 
@@ -48,170 +46,99 @@ class _HomeState extends State<Home> {
 
   ScrollController _scrollController = new ScrollController();
 
+  void changeBrightness() {
+    DynamicTheme.of(context).setBrightness(
+        Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark);
+  }
+
   @override
   void initState() {
-    //getWallpaper();
-    getTrendingWallpaper();
-    categories = getCategories();
     super.initState();
-
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        noOfImageToLoad = noOfImageToLoad + 30;
-        getTrendingWallpaper();
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: MainTitle(),
-      //   elevation: 0.0,
-      // ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Color(0xfff5f8fd),
-                  borderRadius: BorderRadius.circular(24),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 32,
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: TextField(
-                      controller: searchController,
-                      decoration: InputDecoration(
-                          hintText: "search", border: InputBorder.none),
-                    )),
-                    InkWell(
-                        onTap: () {
-                          if (searchController.text != "") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SearchView(
-                                          search: searchController.text,
-                                        )));
-                          }
-                        },
-                        child: Container(child: Icon(Icons.search)))
-                  ],
+                Text(
+                  'Wallpapers',
+                  style: GoogleFonts.openSans(
+                      fontWeight: FontWeight.w700, fontSize: 24),
                 ),
-              ),
-              // Container(
-              //   height: 60,
-              //   child: ListView.builder(
-              //       padding: EdgeInsets.symmetric(horizontal: 24),
-              //       itemCount: categories.length,
-              //       shrinkWrap: true,
-              //       scrollDirection: Axis.horizontal,
-              //       itemBuilder: (context, index) {
-              //         /// Create List Item tile
-              //         return CategoriesTile(
-              //           imgUrls: categories[index].imgUrl,
-              //           categorie: categories[index].categorieName,
-              //         );
-              //       }),
-              // ),
-              SizedBox(
-                height: 220,
-                child: Dashboard(),
-              ),
-              wallPaper(photos, context),
-              SizedBox(
-                height: 24,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Wallpapers provided by Pixels",
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 14,
-                    ),
+                SizedBox(
+                  height: 16,
+                ),
+                Container(
+                  height: 180,
+                  child: Dashboard(),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                // wallPaper(photos, context),
+                Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 24,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CategoriesTile extends StatelessWidget {
-  final String imgUrls, categorie;
-
-  CategoriesTile({@required this.imgUrls, @required this.categorie});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategorieScreen(
-                      categorie: categorie,
-                    )));
-      },
-      child: Container(
-        margin: EdgeInsets.only(right: 8),
-        child: Stack(
-          children: <Widget>[
-            ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: kIsWeb
-                    ? Image.network(
-                        imgUrls,
-                        height: 50,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      )
-                    : CachedNetworkImage(
-                        imageUrl: imgUrls,
-                        height: 50,
-                        width: 100,
-                        fit: BoxFit.cover,
+                  // margin: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                            hintText: "Search ", border: InputBorder.none),
                       )),
-            Container(
-              height: 50,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.black26,
-                borderRadius: BorderRadius.circular(8),
-              ),
+                      InkWell(
+                          onTap: () {
+                            if (searchController.text != "") {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SearchView(
+                                            search: searchController.text,
+                                          )));
+                            }
+                          },
+                          child: Container(child: Icon(Icons.search)))
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Popular',
+                  style: GoogleFonts.openSans(
+                      fontWeight: FontWeight.w600, fontSize: 18),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                SingleChildScrollView(
+                    child: Container(
+                        height: MediaQuery.of(context).size.height * 0.6,
+                        child: DashBoardGrid(search: "popular"))),
+                SizedBox(
+                  height: 24,
+                ),
+              ],
             ),
-            Container(
-                height: 50,
-                width: 100,
-                alignment: Alignment.center,
-                child: Text(
-                  categorie ?? "Yo Yo",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Overpass'),
-                ))
-          ],
+          ),
         ),
       ),
     );
