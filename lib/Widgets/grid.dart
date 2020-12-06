@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wallpaperapp/Screens/ImageView.dart';
@@ -136,21 +135,5 @@ Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
             ),
           ));
         }).toList()),
-  );
-}
-
-Widget MainTitle() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      Text(
-        "Wall",
-        style: TextStyle(color: Colors.blue),
-      ),
-      Text(
-        "Ify",
-        style: TextStyle(color: Colors.red),
-      ),
-    ],
   );
 }

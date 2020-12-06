@@ -1,6 +1,7 @@
 import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wallpaperapp/Screens/SplashScreen.dart';
 
 import 'package:wallpaperapp/Widgets/bottomNav.dart';
 
@@ -40,7 +41,9 @@ class _MyAppState extends State<MyApp> {
             ),
         themedWidgetBuilder: (context, theme) {
           return new MaterialApp(
-              theme: theme, debugShowCheckedModeBanner: false, home: NavBar());
+              theme: theme,
+              debugShowCheckedModeBanner: false,
+              home: SplashScreen());
         });
   }
 }

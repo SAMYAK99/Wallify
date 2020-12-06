@@ -4,14 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:wallpaperapp/Widgets/StaggeredGrid.dart';
 import 'package:wallpaperapp/Widgets/carosel_dashboard.dart';
-import 'package:wallpaperapp/Widgets/grid.dart';
 import 'package:wallpaperapp/data/data.dart';
 import 'package:wallpaperapp/models/CategoryModel.dart';
 import 'package:wallpaperapp/models/PhotosModel.dart';
 
 import 'dart:convert';
 
-import 'Category.dart';
 import 'Search.dart';
 
 class Home extends StatefulWidget {
@@ -44,15 +42,6 @@ class _HomeState extends State<Home> {
 
   TextEditingController searchController = new TextEditingController();
 
-  ScrollController _scrollController = new ScrollController();
-
-  void changeBrightness() {
-    DynamicTheme.of(context).setBrightness(
-        Theme.of(context).brightness == Brightness.dark
-            ? Brightness.light
-            : Brightness.dark);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -72,7 +61,7 @@ class _HomeState extends State<Home> {
                   height: 32,
                 ),
                 Text(
-                  'Wallpapers',
+                  'Wallify',
                   style: GoogleFonts.openSans(
                       fontWeight: FontWeight.w700, fontSize: 24),
                 ),

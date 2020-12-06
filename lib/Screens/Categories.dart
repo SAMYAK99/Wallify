@@ -29,7 +29,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
     },
     {'img': 'assets/dashboard/music.jpg', "name": 'Music', "key": 'music'},
     {'img': 'assets/dashboard/nature.jpg', "name": 'Nature', "key": 'nature'},
-    {'img': 'assets/dashboard/art.jpg', "name": 'Art', "key": 'art'},
     {'img': 'assets/dashboard/city.jpeg', "name": 'City', "key": 'city'},
     {'img': 'assets/dashboard/neon.jpg', "name": 'Neon', "key": 'neon'},
     {'img': 'assets/dashboard/planes.jpg', "name": 'Planes', "key": 'planes'},
@@ -52,7 +51,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   height: 16,
                 ),
                 Text(
-                  'Wallpapers',
+                  'Categories',
                   style: GoogleFonts.openSans(
                       fontWeight: FontWeight.w700, fontSize: 24),
                 ),
