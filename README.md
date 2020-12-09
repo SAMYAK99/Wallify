@@ -65,7 +65,7 @@ Did you know that an average user checks their device more than 100 times a day?
 * A little knowledge of Dart and Flutter
 
 
-Please feel free to file issues at [NewsRecital issues](https://github.com/SAMYAK99/Wallify/issues). Flutter issues can be filed at [Flutter issues](https://github.com/flutter/flutter/issues).
+Please feel free to file issues at [Wallify issues](https://github.com/SAMYAK99/Wallify/issues). Flutter issues can be filed at [Flutter issues](https://github.com/flutter/flutter/issues).
 
 You can also contribute changes. Setting up:
 1. Fork `https://github.com/SAMYAK99/Wallify.git` into your own GitHub account
