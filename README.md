@@ -8,21 +8,23 @@
  ![GitHub last commit](https://img.shields.io/github/last-commit/SAMYAK99/Wallify) 
  ![GitHub issues](https://img.shields.io/github/issues-raw/SAMYAK99/Wallify)
  [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/SAMYAK99/Wallify) 
+ ![GitHub repo size](https://img.shields.io/github/repo-size/SAMYAK99/Wallify)
  
 
-Download , Set and Share 10000+ HD Wallpapers for completely free!!!
+## Download , Set and Share 10000+ HD Wallpapers for completely free!!!
 Our goal is to serve amazing Wallpapers to the people all across the world. Bring your screen to life with exclusive Wallpapers delivered to you by Wallify
 Did you know that an average user checks their device more than 100 times a day? Make each time a real pleasure with unique wallpapers from QHD Wallpapers collections. Let your device become a source of self-expression, joy, inspiration and beautiful!
 
 
+<a href='https://play.google.com/store/apps/details?id=com.projects.wallpaperapp'><img align='center' height='85' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
+
+
 ## Concepts used:
-<ul>
-<li>Wallpapers from Pexels and Unsplash api</li>
-<li>Dynamic Theming</li>
-<li>Set Wallpapers using Wallpaper Manager</li>
-<li>Navigation Using Carousel slider and BottomNavigationBar</li>
-<li>Share Wallpaper using Share Package</li>
-</ul>
+* Wallpapers from [Unsplash](https://unsplash.com/) and [Pexels](https://www.pexels.com/)
+* Dynamic Theming
+* Set Wallpapers using Wallpaper Manager
+* Navigation Using Carousel slider and BottomNavigationBar
+* Share Wallpaper using Share Package
 
 
 ## Features
@@ -45,6 +47,15 @@ Did you know that an average user checks their device more than 100 times a day?
   </tr>
   </table>
   
+##  Requirements
+- Android 7.0 and Above
+- Min sdk version 24
+
+##  Permissions
+- INTERNET
+- NETWORK_STATE
+- SET WALLPAPER
+- EXTERNAL STORAGE
  
 # Contribution Guidelines
 
