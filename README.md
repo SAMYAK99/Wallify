@@ -16,7 +16,7 @@ Our goal is to serve amazing Wallpapers to the people all across the world. Brin
 Did you know that an average user checks their device more than 100 times a day? Make each time a real pleasure with unique wallpapers from QHD Wallpapers collections. Let your device become a source of self-expression, joy, inspiration and beautiful!
 
 
-## 200+ Downloads
+## 250+ Downloads
 <a href='https://play.google.com/store/apps/details?id=com.projects.wallpaperapp'><img align='center' height='85' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
 
 
