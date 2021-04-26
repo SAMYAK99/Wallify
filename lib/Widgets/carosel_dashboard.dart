@@ -10,14 +10,16 @@ class Dashboard extends StatelessWidget {
       padding: EdgeInsets.all(0),
       children: <Widget>[
         CarouselSlider(
-          height: 180.0,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          aspectRatio: 16 / 9,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enableInfiniteScroll: true,
-          // autoPlayAnimationDuration: Duration(milliseconds: 1000),
-          viewportFraction: 0.8,
+          options: CarouselOptions(
+            height: 180.0,
+            enlargeCenterPage: true,
+            autoPlay: true,
+            aspectRatio: 16 / 9,
+            autoPlayCurve: Curves.fastOutSlowIn,
+            enableInfiniteScroll: true,
+            // autoPlayAnimationDuration: Duration(milliseconds: 1000),
+            viewportFraction: 0.8,
+          ),
           items: [
             Content(
                 img: 'assets/homepage/motivation.jpg',
