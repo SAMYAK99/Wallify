@@ -47,8 +47,8 @@ android {
         applicationId "com.projects.wallpaperapp"
         minSdkVersion 24
         targetSdkVersion 30
-        flutterVersionName = '1.1'
-        flutterVersionCode = '2'
+        flutterVersionName = '1.2'
+        flutterVersionCode = '3'
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

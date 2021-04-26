@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:facebook_audience_network/ad/ad_banner.dart';
+import 'package:facebook_audience_network/ad/ad_interstitial.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -48,45 +50,71 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 48,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xfff5f8fd),
-                  borderRadius: BorderRadius.circular(30),
+        body: Stack(
+      children: [
+        SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 48,
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 24),
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: TextField(
-                      controller: searchController,
-                      decoration: InputDecoration(
-                          hintText: "search wallpapers",
-                          border: InputBorder.none),
-                    )),
-                    InkWell(
-                        onTap: () {
-                          getSearchWallpaper(searchController.text);
-                        },
-                        child: Container(child: Icon(Icons.search)))
-                  ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xfff5f8fd),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                          child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                            hintText: "search wallpapers",
+                            border: InputBorder.none),
+                      )),
+                      InkWell(
+                          onTap: () {
+                            getSearchWallpaper(searchController.text);
+                          },
+                          child: Container(child: Icon(Icons.search)))
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              wallPaper(photos, context),
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                wallPaper(photos, context),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: FacebookBannerAd(
+            placementId: "812354409362722_875457729719056",
+            bannerSize: BannerSize.STANDARD,
+            listener: (result, value) {
+              switch (result) {
+                case BannerAdResult.ERROR:
+                  print("Error: $value");
+                  break;
+                case BannerAdResult.LOADED:
+                  print("Loaded: $value");
+                  break;
+                case BannerAdResult.CLICKED:
+                  print("Clicked: $value");
+                  break;
+                case BannerAdResult.LOGGING_IMPRESSION:
+                  print("Logging Impression: $value");
+                  break;
+              }
+            },
+          ),
+        ),
+      ],
+    ));
   }
 }

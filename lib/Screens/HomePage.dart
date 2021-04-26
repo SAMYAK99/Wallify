@@ -1,3 +1,4 @@
+import 'package:facebook_audience_network/ad/ad_interstitial.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -41,8 +42,19 @@ class _HomeState extends State<Home> {
 
   TextEditingController searchController = new TextEditingController();
 
+  Widget ad() {
+    FacebookInterstitialAd.loadInterstitialAd(
+      placementId: "812354409362722_875458466385649",
+      listener: (result, value) {
+        if (result == InterstitialAdResult.LOADED)
+          FacebookInterstitialAd.showInterstitialAd(delay: 5000);
+      },
+    );
+  }
+
   @override
   void initState() {
+    ad();
     super.initState();
   }
 

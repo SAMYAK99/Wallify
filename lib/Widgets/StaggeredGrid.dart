@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_audience_network/ad/ad_banner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -117,53 +118,82 @@ class _CarouselGridState extends State<CarouselGrid> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 32,
-            ),
-            data != null
-                ? Container(
-                    height: MediaQuery.of(context).size.height,
-                    child: new StaggeredGridView.countBuilder(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 8),
-                      crossAxisCount: 3,
-                      itemCount: data.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          Material(
-                              child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ImageView(
-                                        imgPath: data[index]['urls']['regular'],
-                                      )));
-                        },
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: CachedNetworkImage(
-                                imageUrl: data[index]['urls']['regular'],
-                                placeholder: (context, url) => Container(
-                                      color: Color(0xfff5f8fd),
-                                    ),
-                                fit: BoxFit.cover)),
-                      )),
-                      staggeredTileBuilder: (int index) => StaggeredTile.count(
-                          (index % _axis == 0) ? 2 : 1,
-                          (index % _axis == 0) ? 2 : 1),
-                      mainAxisSpacing: 4.0,
-                      crossAxisSpacing: 6.0,
-                    ),
-                  )
-                : Center(
-                    child: new CircularProgressIndicator(),
-                  ),
-          ],
+        body: Stack(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 32,
+              ),
+              Container(
+                child: data != null
+                    ? Container(
+                        height: MediaQuery.of(context).size.height,
+                        child: new StaggeredGridView.countBuilder(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 8),
+                          crossAxisCount: 3,
+                          itemCount: data.length,
+                          itemBuilder: (BuildContext context, int index) =>
+                              Material(
+                                  child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ImageView(
+                                            imgPath: data[index]['urls']
+                                                ['regular'],
+                                          )));
+                            },
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(6),
+                                child: CachedNetworkImage(
+                                    imageUrl: data[index]['urls']['regular'],
+                                    placeholder: (context, url) => Container(
+                                          color: Color(0xfff5f8fd),
+                                        ),
+                                    fit: BoxFit.cover)),
+                          )),
+                          staggeredTileBuilder: (int index) =>
+                              StaggeredTile.count((index % _axis == 0) ? 2 : 1,
+                                  (index % _axis == 0) ? 2 : 1),
+                          mainAxisSpacing: 4.0,
+                          crossAxisSpacing: 6.0,
+                        ),
+                      )
+                    : Center(
+                        child: new CircularProgressIndicator(),
+                      ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: FacebookBannerAd(
+            placementId: "812354409362722_875457533052409",
+            bannerSize: BannerSize.STANDARD,
+            listener: (result, value) {
+              switch (result) {
+                case BannerAdResult.ERROR:
+                  print("Error: $value");
+                  break;
+                case BannerAdResult.LOADED:
+                  print("Loaded: $value");
+                  break;
+                case BannerAdResult.CLICKED:
+                  print("Clicked: $value");
+                  break;
+                case BannerAdResult.LOGGING_IMPRESSION:
+                  print("Logging Impression: $value");
+                  break;
+              }
+            },
+          ),
+        ),
+      ],
+    ));
   }
 }

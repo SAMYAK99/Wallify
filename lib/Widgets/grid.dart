@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:facebook_audience_network/ad/ad_banner.dart';
+import 'package:facebook_audience_network/ad/ad_interstitial.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +30,16 @@ class _GridPageState extends State<GridPage> {
     return "Success";
   }
 
+  Widget ad() {
+    FacebookInterstitialAd.loadInterstitialAd(
+      placementId: "812354409362722_875458593052303",
+      listener: (result, value) {
+        if (result == InterstitialAdResult.LOADED)
+          FacebookInterstitialAd.showInterstitialAd(delay: 4000);
+      },
+    );
+  }
+
   @override
   void initState() {
     getimages(widget.search);
@@ -37,65 +49,107 @@ class _GridPageState extends State<GridPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: data != null
-            ? SingleChildScrollView(
-                child: Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 32,
-                        ),
-                        Text(
-                          widget.heading,
-                          style: GoogleFonts.openSans(
-                              fontWeight: FontWeight.w700, fontSize: 24),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Container(
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            padding: const EdgeInsets.all(4.0),
-                            itemCount: data.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              childAspectRatio: 0.5,
-                              mainAxisSpacing: 6.0,
-                              crossAxisSpacing: 6.0,
+        body: Stack(
+      children: [
+        Container(
+            child: data != null
+                ? SingleChildScrollView(
+                    child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 32,
                             ),
-                            itemBuilder: (context, index) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ImageView(
-                                              imgPath: data[index]['urls']
-                                                  ['regular'],
-                                            )));
-                              },
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: CachedNetworkImage(
-                                      imageUrl: data[index]['urls']['regular'],
-                                      placeholder: (context, url) => Container(
-                                            color: Color(0xfff5f8fd),
-                                          ),
-                                      fit: BoxFit.cover)),
+                            Text(
+                              widget.heading,
+                              style: GoogleFonts.openSans(
+                                  fontWeight: FontWeight.w700, fontSize: 24),
                             ),
-                          ),
-                        )
-                      ],
-                    )),
-              )
-            : new Center(
-                child: new CircularProgressIndicator(),
-              ));
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                physics: ClampingScrollPhysics(),
+                                padding: const EdgeInsets.all(4.0),
+                                itemCount: data.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  childAspectRatio: 0.5,
+                                  mainAxisSpacing: 6.0,
+                                  crossAxisSpacing: 6.0,
+                                ),
+                                itemBuilder: (context, index) =>
+                                    GestureDetector(
+                                  onTap: () {
+                                    ad();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => ImageView(
+                                                  imgPath: data[index]['urls']
+                                                      ['regular'],
+                                                )));
+                                  },
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: CachedNetworkImage(
+                                          imageUrl: data[index]['urls']
+                                              ['regular'],
+                                          placeholder: (context, url) =>
+                                              Container(
+                                                color: Color(0xfff5f8fd),
+                                              ),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
+                            )
+                          ],
+                        )),
+                  )
+                : new Center(
+                    child: new CircularProgressIndicator(),
+                  )),
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: FacebookBannerAd(
+            placementId: "812354409362722_812354706029359",
+            bannerSize: BannerSize.STANDARD,
+            listener: (result, value) {
+              switch (result) {
+                case BannerAdResult.ERROR:
+                  print("Error: $value");
+                  break;
+                case BannerAdResult.LOADED:
+                  print("Loaded: $value");
+                  break;
+                case BannerAdResult.CLICKED:
+                  print("Clicked: $value");
+                  break;
+                case BannerAdResult.LOGGING_IMPRESSION:
+                  print("Logging Impression: $value");
+                  break;
+              }
+            },
+          ),
+        ),
+      ],
+    ));
   }
+}
+
+Widget ad() {
+  FacebookInterstitialAd.loadInterstitialAd(
+    placementId: "812354409362722_875458763052286",
+    listener: (result, value) {
+      if (result == InterstitialAdResult.LOADED)
+        FacebookInterstitialAd.showInterstitialAd(delay: 4000);
+    },
+  );
 }
 
 Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
@@ -113,6 +167,7 @@ Widget wallPaper(List<PhotosModel> listPhotos, BuildContext context) {
           return GridTile(
               child: GestureDetector(
             onTap: () {
+              ad();
               Navigator.push(
                   context,
                   MaterialPageRoute(
