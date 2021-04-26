@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallpaperapp/Screens/SplashScreen.dart';
 
-import 'package:wallpaperapp/Widgets/bottomNav.dart';
-
 void main() {
   runApp(MyApp());
 }
