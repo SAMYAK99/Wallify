@@ -35,6 +35,7 @@ dependencies:
   wallpaper_manager: ^1.0.10
   flutter_cache_manager: ^2.0.0
   facebook_audience_network: ^0.7.1
+  firebase_messaging: ^6.0.9
 
 dev_dependencies:
   flutter_test:
