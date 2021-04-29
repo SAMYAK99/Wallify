@@ -1,4 +1,4 @@
-<p> <img src="./Screenshots/promo.png" > </p>
+<p> <img src="./Screenshots/poster.png" > </p>
 <h1 align="center">Welcome to Wallify 👋</h1>
 
 [![GitHub stars](https://img.shields.io/github/stars/SAMYAK99/Wallify?style=social)](https://github.com/login?return_to=%2FSAMYAK99%Wallify) 
