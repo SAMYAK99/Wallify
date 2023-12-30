@@ -61,26 +61,44 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverPadding(
+              padding: EdgeInsets.only(top: 8),
+              sliver:  SliverAppBar(
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  expandedHeight: 60.0,
+                  elevation: 0,
+                  floating: false,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                      centerTitle: false,
+                      titlePadding: EdgeInsets.only(left: 16, bottom: 16),
+                      title: Text(
+                        'Wallify',
+                        style: GoogleFonts.openSans(
+                            fontWeight: FontWeight.w700, fontSize: 24 ,
+                            color: Theme.of(context).textTheme.bodyText1.color
+                        ),
+                      ),
+                      background: Container(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                      )
+                  )
+              ),
+            )
+          ];
+        },
+        body:
+        Container(
           child: Padding(
             padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 32,
-                ),
-                Text(
-                  'Wallify',
-                  style: GoogleFonts.openSans(
-                      fontWeight: FontWeight.w700, fontSize: 24),
-                ),
-                SizedBox(
-                  height: 16,
-                ),
                 Container(
-                  height: 180,
+                  height: 160,
                   child: Dashboard(),
                 ),
                 SizedBox(
@@ -129,13 +147,8 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   height: 8,
                 ),
-                SingleChildScrollView(
-                    child: Container(
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        child: DashBoardGrid(search: "popular"))),
-                SizedBox(
-                  height: 24,
-                ),
+                Expanded(
+                  child: DashBoardGrid(search: "popular")),
               ],
             ),
           ),

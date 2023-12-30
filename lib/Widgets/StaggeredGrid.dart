@@ -42,44 +42,41 @@ class _DashBoardGridState extends State<DashBoardGrid> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: data != null
-            ? Container(
-                height: MediaQuery.of(context).size.height,
-                child: new StaggeredGridView.countBuilder(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  crossAxisCount: 3,
-                  itemCount: data.length,
-                  itemBuilder: (BuildContext context, int index) => Material(
-                      child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ImageView(
-                                    imgPath: data[index]['urls']['regular'],
-                                  )));
-                    },
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: CachedNetworkImage(
-                            imageUrl: data[index]['urls']['regular'],
-                            placeholder: (context, url) => Container(
-                                  color: Color(0xfff5f8fd),
-                                ),
-                            fit: BoxFit.cover)),
-                  )),
-                  staggeredTileBuilder: (int index) => StaggeredTile.count(
-                      (index % _axis == 0) ? 2 : 1,
-                      (index % _axis == 0) ? 2 : 1),
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 6.0,
-                ),
-              )
-            : Center(
-                child: new CircularProgressIndicator(),
+      body: data != null
+          ? Container(
+              child: new StaggeredGridView.countBuilder(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                crossAxisCount: 3,
+                itemCount: data.length,
+                itemBuilder: (BuildContext context, int index) => Material(
+                    child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ImageView(
+                                  imgPath: data[index]['urls']['regular'],
+                                )));
+                  },
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: CachedNetworkImage(
+                          imageUrl: data[index]['urls']['regular'],
+                          placeholder: (context, url) => Container(
+                                color: Color(0xfff5f8fd),
+                              ),
+                          fit: BoxFit.cover)),
+                )),
+                staggeredTileBuilder: (int index) => StaggeredTile.count(
+                    (index % _axis == 0) ? 2 : 1,
+                    (index % _axis == 0) ? 2 : 1),
+                mainAxisSpacing: 4.0,
+                crossAxisSpacing: 6.0,
               ),
-      ),
+            )
+          : Center(
+              child: new CircularProgressIndicator(),
+            ),
     );
   }
 }

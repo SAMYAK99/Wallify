@@ -11,7 +11,7 @@ class Dashboard extends StatelessWidget {
       children: <Widget>[
         CarouselSlider(
           options: CarouselOptions(
-            height: 180.0,
+            height: 160.0,
             enlargeCenterPage: true,
             autoPlay: true,
             aspectRatio: 16 / 9,

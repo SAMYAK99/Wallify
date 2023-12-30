@@ -30,7 +30,7 @@ class _SettingState extends State<Setting> {
               height: 32,
             ),
             Text(
-              'Setting',
+              'Settings',
               style: GoogleFonts.openSans(
                   fontWeight: FontWeight.w700, fontSize: 24),
             ),
