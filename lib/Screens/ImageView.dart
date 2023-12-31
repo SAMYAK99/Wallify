@@ -160,7 +160,8 @@ class _ImageViewState extends State<ImageView> {
       await permission.requestPermissions([
         PermissionGroup.storage,
         PermissionGroup.camera,
-        PermissionGroup.location
+        PermissionGroup.location ,
+        PermissionGroup.notification
       ]);
       await permission.checkPermissionStatus(PermissionGroup.storage);
     }

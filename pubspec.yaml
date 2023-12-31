@@ -21,7 +21,7 @@ dependencies:
   http: ^0.12.1
   cached_network_image: ^2.0.0
   image_gallery_saver: ^1.2.2
-  permission_handler: ^4.2.0+hotfix.3
+  permission_handler: any
   esys_flutter_share:
   bubble_bottom_bar: ^1.2.0
   random_string: ^2.0.1
@@ -35,7 +35,9 @@ dependencies:
   wallpaper_manager: ^1.0.10
   flutter_cache_manager: ^2.0.0
   facebook_audience_network: ^0.7.1
-  firebase_messaging: ^6.0.9
+#  firebase_messaging: any
+
+
 
 dev_dependencies:
   flutter_test:
